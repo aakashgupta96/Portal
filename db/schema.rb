@@ -11,16 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202141037) do
+ActiveRecord::Schema.define(version: 20161202153504) do
+
+  create_table "bidders_projects", id: false, force: :cascade do |t|
+    t.integer "bidder_id",         null: false
+    t.integer "bidded_project_id", null: false
+  end
+
+  add_index "bidders_projects", ["bidded_project_id", "bidder_id"], name: "index_bidders_projects_on_bidded_project_id_and_bidder_id"
+  add_index "bidders_projects", ["bidder_id", "bidded_project_id"], name: "index_bidders_projects_on_bidder_id_and_bidded_project_id"
+
+  create_table "posters_posts", id: false, force: :cascade do |t|
+    t.integer "poster_id", null: false
+    t.integer "post_id",   null: false
+  end
+
+  add_index "posters_posts", ["post_id", "poster_id"], name: "index_posters_posts_on_post_id_and_poster_id"
+  add_index "posters_posts", ["poster_id", "post_id"], name: "index_posters_posts_on_poster_id_and_post_id"
 
   create_table "projects", force: :cascade do |t|
     t.string   "budget"
     t.string   "description"
     t.string   "avgbig"
     t.string   "time"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "title"
+    t.integer  "poster_id"
+    t.boolean  "completed",   default: false
+    t.integer  "employee_id"
+    t.integer  "finisher_id"
   end
 
   create_table "users", force: :cascade do |t|

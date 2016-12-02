@@ -9,12 +9,9 @@ before_filter :configure_permitted_parameters
   # end
 
   # POST /resource
-   def create
-      #create_new_user(user_params)
-      #byebug
-      super
-      byebug
-   end
+   # def create
+   #    super
+   # end
 
   # GET /resource/edit
   # def edit

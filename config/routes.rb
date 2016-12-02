@@ -1,13 +1,6 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
   resources :projects
->>>>>>> projectcontroller
-  devise_for :users, :controllers  => { :registrations => 'user/registrations' }
-=======
   devise_for :users, :controllers  => { registrations: 'user/registrations', sessions: 'user/sessions', confirmations: 'user/confirmations'}
->>>>>>> f6d68028f9fc9f307e47c94b670f05934ca75797
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

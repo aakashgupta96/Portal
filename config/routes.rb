@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :projects
-  devise_for :users, :controllers  => { registrations: 'user/registrations', sessions: 'user/sessions', confirmations: 'user/confirmations'}
+  devise_for :users, :controllers  => { registrations: 'user/registrations', sessions: 'user/sessions', confirmations: 'user/confirmations', passwords: 'users/passwords'}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

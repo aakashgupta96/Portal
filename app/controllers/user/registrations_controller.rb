@@ -9,9 +9,9 @@ before_filter :configure_permitted_parameters
   # end
 
   # POST /resource
-   # def create
-   #    super
-   # end
+    #def create
+    #   super
+    #end
 
   # GET /resource/edit
   # def edit
@@ -40,9 +40,9 @@ before_filter :configure_permitted_parameters
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username,:contact_no])
-  end
+  #def configure_permitted_parameters
+   # devise_parameter_sanitizer.permit(:sign_up, keys: [:username,:contact_no])
+  #end
   
    
   # If you have extra params to permit, append them to the sanitizer.

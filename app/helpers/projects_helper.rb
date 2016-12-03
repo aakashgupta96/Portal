@@ -1,6 +1,5 @@
 module ProjectsHelper
 	def set_value
-		#byebug
 		if @project.owner_tags_on(@project.poster,:skills).count == 0
 			""
 		else

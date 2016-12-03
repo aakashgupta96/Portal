@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project , only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user! , only: [:new, :edit, :create, :update, :current]
+  before_action :authenticate_user! , only: [:new, :edit, :create, :update, :posted, :taken, :bidded, :completed]
   before_action :check_authority , only: [:update, :edit, :destroy]
   # GET /projects
   # GET /projects.json
@@ -11,7 +11,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    #byebug
   end
 
   # GET /projects/new

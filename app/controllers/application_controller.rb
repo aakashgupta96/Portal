@@ -7,12 +7,12 @@ class ApplicationController < ActionController::Base
   before_action :set_user
 
   def after_sign_in_path_for(resource)
-   '/dashboard'
+    '/dashboard'
   end
   protected
 
   def configure_permitted_parameters
-    added_attrs = [:contact_no, :email, :username, :password, :password_confirmation, :remember_me]
+    added_attrs = [:contact_no, :email, :username, :first_name, :last_name, :password, :password_confirmation, :remember_me, :avatar]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       @user = current_user
     else
-      @user = User.new()
+      @user = User.new
     end
   end
 

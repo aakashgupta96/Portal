@@ -29,11 +29,11 @@
       <ul id="head_nav" class="right hide-on-med-and-down">
         <% if user_signed_in? %>
             <li>
-              <div class='dropdown-button btn' data-activates='dropdown1' style="max-width : 180px;">Hi <%=current_user.username %></div>
+              <div class='dropdown-button btn' data-activates='dropdown1' style="max-width : 180px;">Hi <%=current_user.first_name %></div>
               <!-- Dropdown Structure -->
               <ul id='dropdown1' class='dropdown-content'>
-                <li><%= link_to "Profile",root_path%></li>
-                <li><%= link_to "Edit Profile", root_path%></li>
+                <li><%= link_to "Profile", show_profile_path(username: current_user.username) %></li>
+                <li><%= link_to "Edit Profile", edit_user_registration_path%></li>
                 <li class="divider"></li>
                 <li><%= link_to "SignOut", destroy_user_session_path, method: "Delete"%></li>
               </ul>
@@ -60,13 +60,13 @@
       <ul class="side-nav" id="mobile-demo">
         <% if user_signed_in? %>
             <li style="color: black;">
-              <%= link_to "Hello "+current_user.username, '#'%>
+              <%= link_to "Hello "+current_user.first_name, '#'%>
             </li>
             <li style="color: black;">
-              <%= link_to "Profile", root_path%>
+              <%= link_to "Profile", show_profile_path(username: current_user.username) %>
             </li>
             <li style="color: black;">
-              <%= link_to "Edit Profile" , root_path%>
+              <%= link_to "Edit Profile" , edit_user_registration_path%>
             </li>
             <li>
               <%= link_to "SignOut", destroy_user_session_path, method: "Delete"%>

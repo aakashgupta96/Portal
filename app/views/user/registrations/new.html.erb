@@ -2,7 +2,7 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-
+  <h5>Email, Contact No. and Username should be unique</h5>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true , required: true%>
@@ -12,8 +12,16 @@
     <%= f.label :Username %><br />
     <%= f.text_field :username , required: true %>
   </div>
-  
   <div class="field">
+    <%= f.label :First_name %><br />
+    <%= f.text_field :first_name , required: true %>
+  </div>
+  <div class="field">
+    <%= f.label :Last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+
+    <div class="field">
     <%= f.label :contact_no %><br />
     <%= f.text_field :contact_no , required: true %>
   </div>

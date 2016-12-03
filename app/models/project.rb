@@ -6,6 +6,6 @@ class Project < ActiveRecord::Base
 
 	validates_presence_of :budget , :description , :title , :time , :poster_id
 	validates_uniqueness_of :title
-	validates_length_of :description, :minimum => 0, :maximum => 400
+	validates_length_of :description, minimum: 0, maximum: 400
 
 end

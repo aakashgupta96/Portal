@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_params
-      params.require(:user).permit(:name, :tag_list) ## Rails 4 strong params usage
+      params.require(:user).permit(:email, :contact_no, :first_name, :last_name, :username, :tag_list) ## Rails 4 strong params usage
     end
 
   def set_user
@@ -28,5 +28,4 @@ class ApplicationController < ActionController::Base
       @user = User.new
     end
   end
-
 end

@@ -1,5 +1,5 @@
 <div>
-  <%= image_tag user_image_url(@user),class: "avatar"%> <%= @user.username %>
+  <%= image_tag user_image_url(@user),class: "avatar"%> <%= @user.first_name+' '+@user.last_name %>
 </div>
 <%= link_to 'New Project', new_project_path %><br/>
 <%= link_to 'Posted Project', posted_projects_path %><br/>

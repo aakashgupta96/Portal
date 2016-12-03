@@ -33,8 +33,8 @@ class User < ActiveRecord::Base
   def self.find_for_database_authentication(warden_conditions)
       conditions = warden_conditions.dup
       if login = conditions.delete(:login)
-        where(conditions.to_hash).where(["contact_no = :value OR lower(email) = :value", { :value => login.downcase }]).first
-      elsif conditions.has_key?(:contact_no) || conditions.has_key?(:email)
+        where(conditions.to_hash).where(["contact_no = :value OR lower(email) = :value OR lower(username) = :value", { :value => login.downcase }]).first
+      elsif conditions.has_key?(:contact_no) || conditions.has_key?(:email) || conditions.has_key?(:username)
         where(conditions.to_hash).first
       end
    end

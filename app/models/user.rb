@@ -9,15 +9,23 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :bidded_projects, class_name: 'Project', :join_table => "bidders_projects",foreign_key: "bidder_id", association_foreign_key: "bidded_project_id"
   has_many :completed_projects, class_name: 'Project', foreign_key: "finisher_id"
 
-  validates_presence_of :username , :contact_no, :encrypted_password #checking presence of email is not required as it is being done by devise
-  validates_uniqueness_of :email, :contact_no
-  validates_length_of :contact_no, minimum: 10, maximum: 12
-  validates_numericality_of :employee_ratings , greater_than_or_equal_to: 0 , less_than_or_equal_to: 5
-  validates_numericality_of :employer_ratings , greater_than_or_equal_to: 0 , less_than_or_equal_to: 5
+  #validates_presence_of :username , :contact_no, :encrypted_password #checking presence of email is not required as it is being done by devise
+  #validates_uniqueness_of :email, :contact_no
+  #validates_length_of :contact_no, minimum: 10, maximum: 12
+  #validates_numericality_of :employee_ratings , greater_than_or_equal_to: 0 , less_than_or_equal_to: 5
+  #validates_numericality_of :employer_ratings , greater_than_or_equal_to: 0 , less_than_or_equal_to: 5
 
   attr_accessor :login
 
   after_initialize :init
+
+  #acts_as_taggable # Alias for acts_as_taggable_on :tags
+  acts_as_taggable_on :skills
+  acts_as_ordered_taggable_on :skills
+  scope :by_join_date, ->{
+       order("created_at DESC")
+  }
+  acts_as_tagger
 
 
   def self.find_for_database_authentication(warden_conditions)

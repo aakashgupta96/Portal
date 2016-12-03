@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   resources :projects
+  #resources :users, :controller => 'users'
   devise_for :users, :controllers  => { registrations: 'user/registrations', sessions: 'user/sessions', confirmations: 'user/confirmations', passwords: 'users/passwords'}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
   # You can have the root of your site routed with "root"
    devise_scope:user do 
     root 'user/sessions#new'
-    get '/dashboard' => 'user/sessions#dashboard'
+    get '/dashboard' => 'user/general#dashboard'
   end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

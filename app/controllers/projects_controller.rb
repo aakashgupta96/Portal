@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    #byebug
   end
 
   # GET /projects/new
@@ -22,11 +23,18 @@ class ProjectsController < ApplicationController
   def edit
   end
 
+  def setter project_params
+    newparams = Hash.new()
+    newparams = {:title => project_params[:title],:description => project_params[:description], :budget => project_params[:budget], :time => project_params[:time]}
+  end
+
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
+    newparams = setter(project_params)
+    @project = Project.new(newparams)
     @project.poster = current_user
+    @project.poster.tag(@project, :with => project_params[:tags] , :on => :skills)
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -41,8 +49,10 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    newparams = setter(project_params)
     respond_to do |format|
-      if @project.update(project_params)
+      if @project.update(newparams)
+        @project.poster.tag(@project, :with => project_params[:tags] , :on => :skills)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -70,7 +80,7 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:title, :description, :budget, :time)
+      params.require(:project).permit(:title, :description, :tags, :budget, :time)
     end
 
   def check_authority

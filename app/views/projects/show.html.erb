@@ -10,6 +10,12 @@
   <%= @project.description %>
 </p>
 
+<p>
+  <strong>Skills:</strong>
+  <% @project.owner_tags_on(@project.poster,:skills).each do |tag| %>
+  <%= render 'tag' , :tag => tag %>
+  <% end %>
+</p>
 
 <p>
   <strong>Budget:</strong>

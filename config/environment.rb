@@ -14,3 +14,6 @@ ActionMailer::Base.smtp_settings = {
 }
 
 Rails.application.initialize!
+
+require 'rmagick'
+require 'carrierwave/orm/activerecord'

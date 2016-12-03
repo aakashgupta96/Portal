@@ -14,7 +14,7 @@ class User::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
-  # protected
+# protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params

@@ -15,7 +15,9 @@ Rails.application.routes.draw do
     get '/projects/completed' => 'projects#completed', as: "completed_projects"
     get '/projects/posted' => 'projects#posted', as: "posted_projects"
   resources :projects
+
  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

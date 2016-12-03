@@ -1,0 +1,8 @@
+<div>
+  <%= image_tag user_image_url(@user),class: "avatar"%> <%= @user.username %>
+</div>
+<%= link_to 'New Project', new_project_path %><br/>
+<%= link_to 'Posted Project', posted_projects_path %><br/>
+<%= link_to 'Taken Ongoing Projects', taken_projects_path %><br/>
+<%= link_to 'Completed Projects', completed_projects_path %><br/>
+<%= link_to 'Bidded Projects', bidded_projects_path %><br/>

@@ -15,4 +15,9 @@ ActionMailer::Base.smtp_settings = {
 
 Rails.application.initialize!
 
+
 ActsAsTaggableOn.force_lowercase = true
+
+require 'rmagick'
+require 'carrierwave/orm/activerecord'
+

@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
 
 	validates_presence_of :budget , :description , :title , :time , :poster_id
 	validates_uniqueness_of :title
-	validates_length_of :description, :minimum => 0, :maximum => 400
+	validates_length_of :description, minimum: 0, maximum: 400
 
 	acts_as_taggable_on :skills
 	acts_as_ordered_taggable_on :skills

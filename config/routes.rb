@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {registrations: "user/registrations", sessions: "user/sessions", confirmations: "user/confirmations", passwords: "users/passwords"}
+  devise_for :users, controllers: {registrations: "user/registrations", sessions: "user/sessions", confirmations: "user/confirmations", passwords: "user/passwords", :omniauth_callbacks => "user/omniauth_callbacks"}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   # You can have the root of your site routed with "root"
-  get '/dashboard' => 'users#dashboard'
 
-  devise_scope :user do
-    root 'user/sessions#new'
-  end
+
+  get '/dashboard' => 'users#dashboard', as: "dashboard"
+
+  root 'users#direct_root'
 
   scope :users do
     get ':username' => 'users#profile', as: "show_profile"

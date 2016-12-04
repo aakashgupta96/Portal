@@ -28,4 +28,5 @@ class ApplicationController < ActionController::Base
       @user = User.new
     end
   end
+
 end

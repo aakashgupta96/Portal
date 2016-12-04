@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Portal</title>
+  <title>Portal</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -99,8 +99,8 @@
 
 
 
-<div class="container">	
-	<%= yield %>
+<div class="container">
+  <%= yield %>
 </div>
 
 
@@ -111,25 +111,23 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js" defer></script>
 <script>
-  $(document).ready(function(){
-    $(".button-collapse").sideNav();
-    $("#alert").delay(2500).slideUp('slow');
-    $('.dropdown-button').dropdown({
-      inDuration: 400,
-      outDuration: 600,
-      constrain_width: true, // Does not change width of dropdown to that of the activator
-      hover: true, // Activate on hover
-      gutter: 0, // Spacing from edge
-      belowOrigin: true, // Displays dropdown below the button
-      alignment: 'left' // Displays dropdown with edge aligned to the left of button
-        }
-    );
-
-  })
-  <% if not pop.nil? %>
-  alert("<%= pop %>")
-  <%end%>
+    $(document).ready(function(){
+        $(".button-collapse").sideNav();
+        $("#alert").delay(2500).slideUp('slow');
+        $('.dropdown-button').dropdown({
+                inDuration: 400,
+                outDuration: 600,
+                constrain_width: true, // Does not change width of dropdown to that of the activator
+                hover: true, // Activate on hover
+                gutter: 0, // Spacing from edge
+                belowOrigin: true, // Displays dropdown below the button
+                alignment: 'left' // Displays dropdown with edge aligned to the left of button
+            }
+        );
+    })
+    <% if not pop.nil? %>
+    alert("<%= pop %>")
+    <%end%>
 </script>
-
 </body>
 </html>

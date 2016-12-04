@@ -1,6 +1,14 @@
 class UsersController < ApplicationController
 
-  before_filter ->{ authenticate_user!( force: true )}, only: [:dashboard]
+  before_filter :authenticate_user!,  only: [:dashboard]
+
+  def direct_root
+    if current_user.nil?
+      redirect_to new_user_session_path
+    else
+      redirect_to dashboard_path
+    end
+  end
 
   def dashboard
 

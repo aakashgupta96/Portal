@@ -8,6 +8,10 @@ Devise.setup do |config|
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '8b2e942be24a31e60a669d215776cea9e2aa909ee49625d8ca12be86dc82dec9b82054d2feef8025054ce96ac9f3fb87b26fa7e658dc5fdfcf1582f3d04ab1d5'
 
+
+  #Manual Additions
+
+  config.omniauth :facebook, ENV["FB_ID"], ENV["FB_SECRET"], callback_url: "http://localhost:3000/users/auth/facebook/callback", scope: 'email', info_fields: 'email,name'
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class

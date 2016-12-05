@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
   has_many :completed_projects, class_name: 'Project', foreign_key: "finisher_id"
 
   validates_presence_of :username, :first_name, :encrypted_password #checking presence of email is not required as it is being done by devise
-  validates_uniqueness_of :email,:username, :contact_no
+  validates_uniqueness_of :email,:username
+  validates :contact_no, uniqueness: true, allow_nil: true
   validates_length_of :contact_no, maximum: 12
   validates_numericality_of :employee_ratings , greater_than_or_equal_to: 0 , less_than_or_equal_to: 5
   validates_numericality_of :employer_ratings , greater_than_or_equal_to: 0 , less_than_or_equal_to: 5
@@ -72,6 +73,7 @@ class User < ActiveRecord::Base
   def init
     self.employee_ratings  = 0.0
     self.employer_ratings = 0.0
+    self.contact_no = nil
   end
 
   def confirmation_required?

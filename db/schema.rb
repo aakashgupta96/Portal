@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161204060536) do
+ActiveRecord::Schema.define(version: 20161205080603) do
 
   create_table "bidders_projects", id: false, force: :cascade do |t|
     t.integer "bidder_id",         null: false
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20161204060536) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username",               default: "", null: false
-    t.string   "contact_no",             default: "", null: false
+    t.string   "contact_no",             default: ""
     t.float    "employee_ratings"
     t.float    "employer_ratings"
     t.string   "email",                  default: "", null: false

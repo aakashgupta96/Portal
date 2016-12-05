@@ -5,12 +5,15 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "application", "custom-theme/jquery-ui-1.8.9.custom" %>  
+  <%= javascript_include_tag :defaults, "jquery-ui-#.#.#.custom.min", "autocomplete-rails" %>
   <!-- Compiled and minified CSS  except version 0.97.6 of materialize, no lib is compatible
   because below this version, the side bar will not work and above this version the drop down button
   will not work on hovering-->
   <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+
   <title>Portal</title>
 </head>
 <body>
@@ -111,6 +114,13 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js" defer></script>
 <script>
+    $(document).on('ready page:load', function () {
+    $('#product_tag_ids').chosen({
+      allow_single_deselect: true,
+      width: '100%'
+    })
+    });
+    
     $(document).ready(function(){
         $(".button-collapse").sideNav();
         $("#alert").delay(2500).slideUp('slow');

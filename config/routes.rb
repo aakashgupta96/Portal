@@ -20,7 +20,13 @@ Rails.application.routes.draw do
     get '/completed' => 'projects#completed', as: "completed_projects"
     get '/posted' => 'projects#posted', as: "posted_projects"
   end
-  resources :projects
+
+
+
+  #get 'skills/:skill', to: 'projects#index', as: :skills
+  resources :projects do
+      get :autocomplete_tag_name, :on => :collection
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

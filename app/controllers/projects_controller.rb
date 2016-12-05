@@ -1,11 +1,18 @@
 class ProjectsController < ApplicationController
+  autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag' 
+
   before_action :set_project , only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user! , only: [:new, :edit, :create, :update, :posted, :taken, :bidded, :completed]
   before_action :check_authority , only: [:update, :edit, :destroy]
   # GET /projects
   # GET /projects.json
   def index
+
+    if params[:tag]
+    @projects = Project.tagged_with(params[:tag])
+  else
     @projects = Project.all
+  end
   end
 
   # GET /projects/1
@@ -33,7 +40,7 @@ class ProjectsController < ApplicationController
     newparams = setter(project_params)
     @project = Project.new(newparams)
     @project.poster = current_user
-    @project.poster.tag(@project, :with => project_params[:tags] , :on => :skills)
+    @project.poster.tag(@project, :with => project_params[:tag_list] , :on => :tags)
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -51,7 +58,7 @@ class ProjectsController < ApplicationController
     newparams = setter(project_params)
     respond_to do |format|
       if @project.update(newparams)
-        @project.poster.tag(@project, :with => project_params[:tags] , :on => :skills)
+        @project.poster.tag(@project, :with => project_params[:tag_list] , :on => :tags)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -94,7 +101,7 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:title, :description, :tags, :budget, :time)
+      params.require(:project).permit(:title, :description, :tag_list, :budget, :time,:tag, { tag_ids: [] }, :tag_ids)
     end
 
   def check_authority

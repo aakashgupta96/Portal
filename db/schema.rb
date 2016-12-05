@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205080603) do
+ActiveRecord::Schema.define(version: 20161205103519) do
 
   create_table "bidders_projects", id: false, force: :cascade do |t|
     t.integer "bidder_id",         null: false
@@ -20,6 +20,20 @@ ActiveRecord::Schema.define(version: 20161205080603) do
 
   add_index "bidders_projects", ["bidded_project_id", "bidder_id"], name: "index_bidders_projects_on_bidded_project_id_and_bidder_id"
   add_index "bidders_projects", ["bidder_id", "bidded_project_id"], name: "index_bidders_projects_on_bidder_id_and_bidded_project_id"
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories_projects", id: false, force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.integer "project_id",  null: false
+  end
+
+  add_index "categories_projects", ["category_id", "project_id"], name: "index_categories_projects_on_category_id_and_project_id"
+  add_index "categories_projects", ["project_id", "category_id"], name: "index_categories_projects_on_project_id_and_category_id"
 
   create_table "posters_posts", id: false, force: :cascade do |t|
     t.integer "poster_id", null: false

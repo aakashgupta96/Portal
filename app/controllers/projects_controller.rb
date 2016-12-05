@@ -34,6 +34,12 @@ class ProjectsController < ApplicationController
     @project = Project.new(newparams)
     @project.poster = current_user
     @project.poster.tag(@project, :with => project_params[:tags] , :on => :skills)
+    params[:project][:categories].each do |id|
+      byebug
+      if not Category.find_by_id(id).nil?
+        @project.categories << Category.find(id)
+      end
+    end
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -86,6 +92,10 @@ class ProjectsController < ApplicationController
   def posted
     @projects = current_user.posted_projects
   end
+
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
@@ -94,15 +104,15 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:title, :description, :tags, :budget, :time)
+      params.require(:project).permit(:title, :description, :tags, :budget, :time, :categories)
     end
 
-  def check_authority
-    if current_user == @project.poster
-      true
-    else
-      redirect_to '/projects' , alert: "Unauthorized to make any change"
-      return
+    def check_authority
+      if current_user == @project.poster
+        true
+      else
+        redirect_to '/projects' , alert: "Unauthorized to make any change"
+        return
+      end
     end
-  end
 end

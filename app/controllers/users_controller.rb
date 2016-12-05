@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   before_filter :authenticate_user!,  only: [:dashboard]
 
+  
   def direct_root
     if current_user.nil?
       redirect_to new_user_session_path

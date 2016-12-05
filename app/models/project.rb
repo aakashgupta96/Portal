@@ -8,8 +8,8 @@ class Project < ActiveRecord::Base
 	validates_length_of :description, minimum: 0, maximum: 400
 
 
-	acts_as_taggable_on :skills
-	acts_as_ordered_taggable_on :skills
+	acts_as_taggable_on :tags
+	acts_as_ordered_taggable_on :tags
 	scope :by_join_date, ->{
 	    order("created_at DESC")
   	}

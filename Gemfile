@@ -2,7 +2,11 @@ source 'https://rubygems.org'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 
+gem 'rails4-autocomplete'
+
 gem 'rmagick'
+
+gem 'jquery-ui-rails'
 
 gem 'omniauth-facebook'
 

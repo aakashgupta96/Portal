@@ -23,7 +23,8 @@
 
   <div class="field">
     <%= f.label :skills %><br>
-    <%= f.text_field :tags, :value => set_value %>
+    <%#= f.text_field :tag_list , :value =>set_value %>
+     <%= f.autocomplete_field :tag_list, autocomplete_tag_name_projects_path, :"data-delimiter" => ', ', :value =>set_value%>
   </div>
 
   <div class="field">

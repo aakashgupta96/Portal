@@ -24,8 +24,8 @@ class User < ActiveRecord::Base
   after_initialize :init
 
   #acts_as_taggable # Alias for acts_as_taggable_on :tags
-  acts_as_taggable_on :skills
-  acts_as_ordered_taggable_on :skills
+  acts_as_taggable_on :tags
+  acts_as_ordered_taggable_on :tags
   scope :by_join_date, ->{
        order("created_at DESC")
   }

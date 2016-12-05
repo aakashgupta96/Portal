@@ -12,7 +12,7 @@
 
 <p>
   <strong>Skills:</strong>
-  <% @project.owner_tags_on(@project.poster,:skills).each do |tag| %>
+  <% @project.owner_tags_on(@project.poster,:tags).each do |tag| %>
   <%= render 'tag' , :tag => tag %>
   <% end %>
 </p>

@@ -12,7 +12,13 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-
+      @related_projects = Set.new
+      @user.tag_list.each do |tag|
+          p = Project.tagged_with(tag)
+          p.each do |proj|
+              @related_projects.add(proj)
+          end
+      end
   end
 
   def profile

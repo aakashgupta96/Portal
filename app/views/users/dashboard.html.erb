@@ -6,3 +6,16 @@
 <%= link_to 'Taken Ongoing Projects', taken_projects_path %><br/>
 <%= link_to 'Completed Projects', completed_projects_path %><br/>
 <%= link_to 'Bidded Projects', bidded_projects_path %><br/>
+
+<table>
+<p>Related Projects</p>
+<% @related_projects.each do |proj| %>
+<tr>
+<td>Title: <%= proj.title%></td>
+<td>Description: <%= proj.description%></td>
+<td>Skills: <%=set_value(proj)%></td>
+<td>Budget: <%= proj.budget%></td>
+<td>Deadline: <%= proj.time%></td>
+</tr>
+<% end %>
+</table>

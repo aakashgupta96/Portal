@@ -14,4 +14,8 @@ class Project < ActiveRecord::Base
 	    order("created_at DESC")
   	}
 
+  	def tag_list
+  		owner_tags_on(self.poster,:tags)
+  	end
+
 end

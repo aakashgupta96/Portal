@@ -7,4 +7,18 @@ module UsersHelper
       @user.avatar.url(:thumb)
     end
   end
+
+  def set_skills
+    if @user.tag_list.count == 0
+      ""
+    else
+      array= Array.new
+      @user.tag_list.each do |tag|
+        temp = "#{tag}, "
+        array << temp
+      end
+
+      array
+    end
+  end
 end

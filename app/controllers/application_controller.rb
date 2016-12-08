@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
 
+
   def user_params
       params.require(:user).permit(:email, :contact_no, :first_name, :last_name, :username, :tag_list) ## Rails 4 strong params usage
     end

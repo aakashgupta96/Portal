@@ -12,6 +12,13 @@
     <%= f.label :Last_name %><br />
     <%= f.text_field :last_name %>
   </div>
+
+  <div class="field">
+    <%= f.label :skills %><br>
+     <%= f.autocomplete_field :tag_list, autocomplete_tag_name_projects_path, :"data-delimiter" => ', ', :value =>set_skills%>
+  </div>
+
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>

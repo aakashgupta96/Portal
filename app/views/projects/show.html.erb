@@ -1,8 +1,15 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><%#= notice %></p>
 
 <p>
   <strong>Title:</strong>
   <%= @project.title %>
+</p>
+
+<p>
+  <strong>Category:</strong><br/>
+  <% @project.categories.each do |c| %>
+  <%= c.name %><br/>
+  <%end%>
 </p>
 
 <p>

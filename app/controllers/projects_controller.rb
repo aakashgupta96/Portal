@@ -40,12 +40,8 @@ class ProjectsController < ApplicationController
     newparams = setter(project_params)
     @project = Project.new(newparams)
     @project.poster = current_user
-    params[:project][:categories].each do |id|
-      if not Category.find_by_id(id).nil?
-        @project.categories << Category.find(id)
-      end
-    end
     @project.poster.tag(@project, :with => project_params[:tag_list] , :on => :tags)
+    copy_categories
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -64,6 +60,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.update(newparams)
         @project.poster.tag(@project, :with => project_params[:tag_list] , :on => :tags)
+        copy_categories
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -120,5 +117,15 @@ class ProjectsController < ApplicationController
         redirect_to '/projects' , alert: "Unauthorized to make any change"
         return
       end
+    end
+
+    def copy_categories
+      @project.categories.delete_all
+      params[:project][:categories].each do |id|
+        if (not Category.find_by_id(id).nil?) and (@project.categories.find_by_id(id).nil?)
+          @project.categories << Category.find(id)
+        end
+      end
+
     end
 end

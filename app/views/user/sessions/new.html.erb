@@ -2,14 +2,6 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-
-    <div class="field">
-      <%= f.label :category %><br />
-      <% User.all.each do |a_value| %>
-          <%= f.check_box(:username, { :multiple => true }, a_value.first_name) %>
-      <% end %>
-    </div>
-
     <div class="field">
     <%= f.label :Email_Id_or_Phone_no %><br />
     <%= f.text_field :login, autofocus: true %>

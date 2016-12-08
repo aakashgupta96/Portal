@@ -22,9 +22,7 @@ class UsersController < ApplicationController
   end
 
   def profile
-    byebug
     @user = User.find_by_username(params[:username])
-    byebug
   end
 
   def add_owned_tag

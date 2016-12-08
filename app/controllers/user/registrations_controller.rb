@@ -21,11 +21,9 @@ autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
 
   # PUT /resource
    def update
-    #byebug
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
     allowed_params = configure_account_update_params
-    #byebug
     resource_updated = update_resource(resource, allowed_params)
     yield resource if block_given?
     if resource_updated
@@ -42,7 +40,6 @@ autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
       respond_with resource
     end
    end
-
   # DELETE /resource
   # def destroy
   #   super
@@ -74,10 +71,8 @@ autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
 
 
    def after_update_path_for(resource)
-      byebug
       "/users/#{resource.username}"#show_profile_path(resource.username)
   end
-
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
   #   super(resource)

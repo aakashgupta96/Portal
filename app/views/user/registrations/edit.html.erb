@@ -24,7 +24,7 @@
   <% end %>
     <div class="field">
       <%= f.label 'Profile_Picture' %><br/><br/>
-      <%= f.file_field :avatar%><br/><br/>
+      <%= f.file_field :avatar, onchange: "validateFiles(this);", data: { max_file_size: 5.megabytes}%><br/><br/>
     </div>
 
   <div class="actions">

@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   validates_length_of :contact_no, maximum: 12
   validates_numericality_of :employee_ratings , greater_than_or_equal_to: 0 , less_than_or_equal_to: 5
   validates_numericality_of :employer_ratings , greater_than_or_equal_to: 0 , less_than_or_equal_to: 5
+  validate :avatar_size_validation
 
   attr_accessor :login
 
@@ -82,6 +83,12 @@ class User < ActiveRecord::Base
 
   def confirmation_required?
     !confirmed?
+  end
+
+  private
+
+  def avatar_size_validation
+    errors[:avatar] << "should be less than 5MB" if avatar.size > 5.megabytes
   end
 
 end

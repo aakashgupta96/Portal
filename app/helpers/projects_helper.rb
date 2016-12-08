@@ -1,14 +1,13 @@
 module ProjectsHelper
-	def set_value
-		if @project.owner_tags_on(@project.poster,:tags).count == 0
+	def set_value project
+		if project.tag_list.count == 0
 			""
 		else
 			array= Array.new
-			@project.owner_tags_on(@project.poster,:tags).each do |tag|
+			project.tag_list.each do |tag|
 				temp = "#{tag}, "
 				array << temp
 			end
-
 			array
 		end
 	end

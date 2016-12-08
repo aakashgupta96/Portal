@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
   }
   acts_as_tagger
 
+  #def to_param
+   # username
+  #end
+
 
   def self.find_for_database_authentication(warden_conditions)
       conditions = warden_conditions.dup

@@ -12,11 +12,19 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-
+      @related_projects = Set.new
+      @user.tag_list.each do |tag|
+          p = Project.tagged_with(tag)
+          p.each do |proj|
+              @related_projects.add(proj)
+          end
+      end
   end
 
   def profile
+    byebug
     @user = User.find_by_username(params[:username])
+    byebug
   end
 
   def add_owned_tag

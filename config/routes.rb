@@ -3,16 +3,18 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   # You can have the root of your site routed with "root"
-
-
+     
   get '/dashboard' => 'users#dashboard', as: "dashboard"
 
   root 'users#direct_root'
 
   scope :users do
-    get ':username' => 'users#profile', as: "show_profile"
+    get ':username' => 'users#profile',:constraints => { :username => /[^\/]+/ }, as: "show_profile"
   end
 
+  resources :users do
+    get :autocomplete_tag_name, :on => :collection
+  end
 
   scope :projects do
     get '/taken' => 'projects#taken' , as: "taken_projects"
@@ -20,8 +22,6 @@ Rails.application.routes.draw do
     get '/completed' => 'projects#completed', as: "completed_projects"
     get '/posted' => 'projects#posted', as: "posted_projects"
   end
-
-
 
   #get 'skills/:skill', to: 'projects#index', as: :skills
   resources :projects do

@@ -9,6 +9,9 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     '/dashboard'
   end
+
+  
+  
   protected
 
   def configure_permitted_parameters
@@ -16,6 +19,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
+
 
   def user_params
       params.require(:user).permit(:email, :contact_no, :first_name, :last_name, :username, :tag_list) ## Rails 4 strong params usage
